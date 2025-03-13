@@ -7,13 +7,15 @@ import { useEffect, useState } from "react";
 // const str = JSON.stringify(obj)  // "{"title": "hej"}" - Gör om js object till sträng
 // const obj2 = JSON.parse(str) // {"title": "hej"} - Gör om sträng till object
 
+const BASE_URL = "ec2-54-217-175-86.eu-west-1.compute.amazonaws.com";
+
 export default function TodoApp() {
   const [todos, setTodos] = useState([]);
   const [input, setInput] = useState([]);
 
   // Hämta todo items från backend
   async function getTodos() {
-    const respons = await fetch("http://localhost:4000/todos", {
+    const respons = await fetch(`http://${BASE_URL}:4000/todos`, {
       method: "GET",
     });
     const data = await respons.json();
@@ -30,7 +32,7 @@ export default function TodoApp() {
 
     setInput("");
 
-    await fetch("http://localhost:4000/todos", {
+    await fetch(`http://${BASE_URL}:4000/todos`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newTodo),
