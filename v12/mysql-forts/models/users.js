@@ -1,4 +1,3 @@
-// help function to make code look nicer
 import { query } from "../server.js";
 
 export async function getUser(username, password) {
